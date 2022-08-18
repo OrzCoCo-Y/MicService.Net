@@ -15,7 +15,7 @@ namespace AuthenticationCenter.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpGet]
         public string Allow()
         {
             return "【授权中心】- 无需授权可访问的资源";

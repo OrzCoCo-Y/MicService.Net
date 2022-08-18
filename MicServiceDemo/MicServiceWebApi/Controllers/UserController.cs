@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MicServiceWebApi.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Authorization;
 
 namespace MicServiceWebApi.Controllers
 {
@@ -20,32 +20,32 @@ namespace MicServiceWebApi.Controllers
             new User()
             {
                 Id=1,
-                Account="Administrator",
-                Email="57265177@qq.com",
-                Name="Eleven",
+                Account="MrZhang",
+                Email="test001@yopmail.com",
+                Name="张三",
                 Password="1234567890",
                 LoginTime=DateTime.Now,
-                Role="Admin"
+                ApiDomain="Admin"
             },
              new User()
             {
-                Id=1,
-                Account="Apple",
-                Email="57265177@qq.com",
-                Name="Apple",
+                Id=2,
+                Account="MissSi",
+                Email="test002@yopmail.com",
+                Name="李四",
                 Password="1234567890",
                 LoginTime=DateTime.Now,
-                Role="Admin"
+                ApiDomain="Admin"
             },
               new User()
             {
-                Id=1,
-                Account="Cole",
-                Email="57265177@qq.com",
-                Name="Cole",
+                Id=3,
+                Account="MrWu",
+                Email="test003@yopmail.com",
+                Name="王五",
                 Password="1234567890",
                 LoginTime=DateTime.Now,
-                Role="Admin"
+                ApiDomain="Admin"
             },
         };
         #endregion
@@ -64,13 +64,13 @@ namespace MicServiceWebApi.Controllers
         [Authorize]
         public IEnumerable<User> GetAll()
         {
-            this._logger.LogInformation($"This is UserController-Get {this._IConfiguration["port"]}");
-            return this._UserList.Select(u => new User()
+            _logger.LogInformation($"This is UserController-Get {_IConfiguration["port"]}");
+            return _UserList.Select(u => new User()
             {
                 Id = u.Id,
                 Account = u.Account,
                 Name = u.Name,
-                Role = $"{ this._IConfiguration["ip"]}{ this._IConfiguration["port"]}",
+                ApiDomain = $"{_IConfiguration["ip"]}:{_IConfiguration["port"]}",
                 Email = u.Email,
                 LoginTime = u.LoginTime,
                 Password = u.Password
@@ -81,13 +81,13 @@ namespace MicServiceWebApi.Controllers
         [AllowAnonymous]
         public IEnumerable<User> GetAllWithNoVerify()
         {
-            this._logger.LogInformation($"This is UserController-Get {this._IConfiguration["port"]}");
-            return this._UserList.Select(u => new User()
+            _logger.LogInformation($"This is UserController-Get {_IConfiguration["port"]}");
+            return _UserList.Select(u => new User()
             {
                 Id = u.Id,
                 Account = u.Account,
                 Name = u.Name,
-                Role = $"{this._IConfiguration["ip"]}{this._IConfiguration["port"]}",
+                ApiDomain = $"{_IConfiguration["ip"]}:{_IConfiguration["port"]}",
                 Email = u.Email,
                 LoginTime = u.LoginTime,
                 Password = u.Password

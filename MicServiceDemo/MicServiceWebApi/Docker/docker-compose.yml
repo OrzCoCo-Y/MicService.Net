@@ -5,14 +5,14 @@ services:
       context: /opt/micservice/
     image: webapicompose
     ports:
-      - 5727:80/tcp
+      - 44380:80/tcp
     command: ["dotnet","app/MicServiceWebApi"]
     volumes:
     - /opt/micservice_api/apiconfig/appsettings5727.json:/app/appsettings.json
   service2:
     image: webapicompose
     ports:
-      - 5728:80/tcp
+      - 44381:80/tcp
     command: ["dotnet","app/MicServiceWebApi"]
     volumes:
     - /opt/micservice_api/apiconfig/appsettings5728.json:/app/appsettings.json

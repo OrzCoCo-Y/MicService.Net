@@ -22,7 +22,7 @@ namespace MicServiceWebApi.Controllers
         {
             Console.WriteLine($"This is HealthController  {_iConfiguration["port"]} Invoke {DateTime.Now}");
 
-            return Ok();// 只是个200 
+            return Ok(); 
         }
 
     }

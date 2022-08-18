@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using IdentityServer4.Models;
+﻿using IdentityServer4.Models;
+using System.Collections.Generic;
 
 namespace AuthenticationCenter
 {

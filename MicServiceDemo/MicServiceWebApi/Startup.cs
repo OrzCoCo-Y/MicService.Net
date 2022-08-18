@@ -26,12 +26,14 @@ namespace MicServiceWebApi
                 {
                     options.EnableEndpointRouting = false;
                 });
+
+            // 授权认证
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "http://localhost:7000";//id4服务地址
-                    options.ApiName = "UserApi";//id4 api资源里的ApiName
-                    options.RequireHttpsMetadata = false; //不使用https
+                    options.Authority = "http://localhost:7000";    //id4服务地址
+                    options.ApiName = "UserApi";    //id4 api资源里的ApiName
+                    options.RequireHttpsMetadata = false;   //不使用https
                     options.SupportedTokens = SupportedTokens.Both;
                 });
         }

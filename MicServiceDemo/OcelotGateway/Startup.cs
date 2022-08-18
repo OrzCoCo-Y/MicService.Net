@@ -1,16 +1,13 @@
-using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Ocelot.Cache;
+using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
-using System;
-using Ocelot.Cache;
-using Ocelot.Cache.CacheManager;
 using Ocelot.Provider.Polly;
 using OcelotGateway.OcelotExtend.CacheExtend;
 
@@ -28,6 +25,8 @@ namespace OcelotGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region 网关加入授权认证
+
             //var authenticationProviderKey1 = "UserGatewayKey";
             //Action<IdentityServerAuthenticationOptions> configureOptions = options =>
             //{
@@ -40,6 +39,7 @@ namespace OcelotGateway
             //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             //     .AddIdentityServerAuthentication(authenticationProviderKey1, configureOptions);
 
+            #endregion
 
             services.AddOcelot()
               .AddConsul()
