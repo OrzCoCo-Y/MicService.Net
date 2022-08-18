@@ -1,0 +1,54 @@
+version: '3.3'
+services:
+  ocelot-nginx:
+    image: nginx:latest
+    ports:
+      - 20080:80/tcp
+    volumes:
+      - /microservice/configure/ocelot-nginx/nginx.conf:/etc/nginx/nginx.conf
+  ocelot6298:
+    build:
+      context: /microservice/gateway
+    image: composeocelot.805
+    ports:
+      - 6298:80/tcp
+    command: ["dotnet", "/app/Zhaoxi.MicroService.GatewayDemo"]
+    volumes:
+      - /microservice/configure/ocelot/configuration.json:/app/configuration.json
+  ocelot6299:
+    image: composeocelot.805
+    ports:
+      - 6299:80/tcp
+    command: ["dotnet", "/app/Zhaoxi.MicroService.GatewayDemo"]
+    volumes:
+      - /microservice/configure/ocelot/configuration.json:/app/configuration.json
+  consul-nginx:
+    image: nginx:latest
+    ports:
+      - 20086:80/tcp
+    volumes:
+      - /microservice/configure/consul-nginx/nginx.conf:/etc/nginx/nginx.conf
+  api5726:
+    build:
+      context: /elevenmicro/webapidemo
+    image: compose31v1.805
+    ports:
+      - 5726:80/tcp
+    command: ["dotnet", "/app/Zhaoxi.Microservice.WebApiDemo"]
+    volumes:
+      - /microservice/configure/api/appsettings5726.json:/app/appsettings.json
+  api5727:
+    image: compose31v1.805
+    ports:
+      - 5727:80/tcp
+    command: ["dotnet", "/app/Zhaoxi.Microservice.WebApiDemo"]
+    volumes:
+      - /microservice/configure/api/appsettings5727.json:/app/appsettings.json
+  api5728:
+    image: compose31v1.805
+    ports:
+      - 5728:80/tcp
+    command: ["dotnet", "/app/Zhaoxi.Microservice.WebApiDemo"]
+    volumes:
+      - /microservice/configure/api/appsettings5728.json:/app/appsettings.json
+ 
