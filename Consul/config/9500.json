@@ -1,0 +1,9 @@
+{
+ "ports":{
+    "http":9500,
+    "dns":9600,
+    "grpc":9400,
+    "server": 9300,
+    "serf_lan": 9301,
+    "serf_wan": 9302
+}}
